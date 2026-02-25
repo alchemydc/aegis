@@ -1,0 +1,50 @@
+---
+import CTAButton from './CTAButton.astro';
+
+const navLinks = [
+  { href: '/features', label: 'Features' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/privacy-security', label: 'Privacy' },
+  { href: '/faq', label: 'FAQ' },
+];
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-border-light/10 bg-charcoal/90 backdrop-blur-md transition-shadow duration-300">
+  <div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <a href="/" class="inline-flex items-center gap-3">
+      <img src="/images/aegis_logo.png" alt="Aegis" class="h-10 w-auto" loading="eager" />
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-sm font-medium text-off-white transition-colors hover:text-cyan">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden md:block">
+      <CTAButton href="/download">Download</CTAButton>
+    </div>
+
+    <details class="relative md:hidden">
+      <summary class="list-none cursor-pointer rounded-md border border-border-light/40 px-3 py-2 text-sm font-medium text-off-white">
+        Menu
+      </summary>
+      <nav class="absolute right-0 mt-3 w-56 rounded-lg border border-border-light/20 bg-charcoal p-3 shadow-lg dark:border-border-light/30" aria-label="Mobile">
+        <ul class="space-y-2">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="block rounded-md px-3 py-2 text-sm text-off-white transition-colors hover:bg-white/10 hover:text-cyan">
+                {link.label}
+              </a>
+            </li>
+          ))}
+          <li class="pt-2">
+            <CTAButton href="/download">Download</CTAButton>
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.jsx';
+---
+
+<Base title="Contact Aegis" description="Reach out to the Aegis team with questions, feedback, or bug reports.">
+  <section class="bg-off-white py-20 dark:bg-charcoal">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-navy dark:text-white">Contact</h1>
+      <p class="mt-4 text-base text-gray-muted">
+        Questions, feedback, or bug reports are welcome.
+      </p>
+
+      <div class="mt-8 reveal">
+        <ContactForm client:load />
+      </div>
+
+      <p class="mt-4 text-sm text-gray-muted">
+        Prefer email directly? Reach us at
+        <a class="text-navy underline decoration-cyan/70 underline-offset-2 dark:text-cyan" href="mailto:hello@aegis.dev">
+          hello@aegis.dev
+        </a>
+      </p>
+    </div>
+  </section>
+</Base>

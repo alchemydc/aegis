@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+
+const steps = [
+  {
+    title: 'Install from the Browser Store',
+    detail:
+      'Install Aegis in one click. Once enabled, it immediately prepares protection for supported AI chat surfaces.',
+    mediaTitle: 'Chrome Web Store install screen',
+    mediaNote: 'Screenshot coming soon',
+  },
+  {
+    title: 'Open ChatGPT and Continue as Normal',
+    detail:
+      'No workflow changes. You chat exactly the same way while Aegis monitors for injected promotional content.',
+    mediaTitle: 'Clean conversation view',
+    mediaNote: 'Screenshot coming soon',
+  },
+  {
+    title: 'Aegis Intercepts and Neutralizes Ads',
+    detail:
+      'When ad elements appear, Aegis removes them in real-time to keep your conversations clear and uninterrupted.',
+    mediaTitle: 'Before and after ad removal',
+    mediaNote: 'Demo visual coming soon',
+  },
+];
+---
+
+<Base title="How Aegis Works" description="See how Aegis blocks ads in ChatGPT in three simple steps.">
+  <section class="bg-gray-50 py-20 dark:bg-charcoal/95">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-navy dark:text-white">How It Works</h1>
+      <p class="mt-4 max-w-2xl text-base text-gray-muted">
+        Fast setup, invisible operation, immediate protection.
+      </p>
+
+      <div class="mt-12 space-y-6">
+        {steps.map((step, index) => (
+          <article class="reveal rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+            <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
+              {index + 1}
+            </div>
+            <h2 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{step.title}</h2>
+            <p class="mt-3 text-base leading-7 text-gray-muted">{step.detail}</p>
+            <div class="mt-5 aspect-video rounded-lg border border-border-light bg-border-light/60 dark:border-border-light/40 dark:bg-charcoal/80">
+              <div class="flex h-full flex-col items-center justify-center px-4 text-center">
+                <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan/40 bg-cyan/15 text-cyan">
+                  image
+                </span>
+                <p class="mt-3 text-sm font-semibold text-navy dark:text-white">{step.mediaTitle}</p>
+                <p class="mt-1 text-xs text-gray-muted">{step.mediaNote}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

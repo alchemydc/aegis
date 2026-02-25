@@ -1,0 +1,35 @@
+---
+const trustItems = [
+  {
+    icon: '🔒',
+    title: 'No Data Collection',
+    description: 'Aegis runs on your device. Your conversations never touch external servers.',
+  },
+  {
+    icon: '🧩',
+    title: 'Open Source',
+    description: 'Code is transparent and open for community inspection and audits.',
+  },
+  {
+    icon: '✅',
+    title: 'GDPR Aligned',
+    description: 'Designed around privacy principles and compliant-by-default behavior.',
+  },
+];
+---
+
+<section id="privacy" class="bg-off-white py-20 dark:bg-charcoal" aria-labelledby="privacy-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <h2 id="privacy-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Your Privacy Is Sacred</h2>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {trustItems.map((item) => (
+        <article class="reveal rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+          <p class="text-2xl" aria-hidden="true">{item.icon}</p>
+          <h3 class="mt-4 text-lg font-semibold text-navy dark:text-white">{item.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-gray-muted">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

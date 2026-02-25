@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+
+const values = [
+  'Defend user focus in AI chat interfaces',
+  'Protect conversation integrity from monetization noise',
+  'Ship privacy-first tools that stay transparent and open',
+];
+---
+
+<Base title="About Aegis" description="Why Aegis exists and the mission behind ad-free AI conversations.">
+  <section class="bg-off-white py-20 dark:bg-charcoal">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-navy dark:text-white">About Aegis</h1>
+      <p class="mt-5 text-base leading-7 text-gray-muted">
+        AI platforms are increasingly monetizing user interactions. Aegis exists to keep conversations useful,
+        private, and free from intrusive ad placement.
+      </p>
+
+      <h2 class="mt-10 text-2xl font-semibold text-navy dark:text-white">Mission</h2>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-base text-gray-muted">
+        {values.map((value) => (
+          <li>{value}</li>
+        ))}
+      </ul>
+
+      <article class="reveal mt-10 rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+        <h3 class="text-xl font-semibold text-navy dark:text-white">Team</h3>
+        <p class="mt-3 text-sm text-gray-muted">
+          Team details will be published soon. For now, Aegis is focused on shipping a reliable MVP for ChatGPT.
+        </p>
+      </article>
+    </div>
+  </section>
+</Base>

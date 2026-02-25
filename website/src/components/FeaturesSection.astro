@@ -1,0 +1,35 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+const features = [
+  {
+    icon: '🛡️',
+    title: 'Real-Time Blocking',
+    description:
+      'Detects and removes ads the moment they appear. No lag and no manual intervention.',
+  },
+  {
+    icon: '⚡',
+    title: 'Zero-Click Installation',
+    description: 'One-click install from the Chrome Web Store. No configuration required.',
+  },
+  {
+    icon: '🙈',
+    title: 'Transparent Privacy',
+    description:
+      'No data collection. Runs entirely on your device and remains open source for community review.',
+  },
+];
+---
+
+<section id="features" class="bg-off-white py-20 dark:bg-charcoal" aria-labelledby="features-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <h2 id="features-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Key Features</h2>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => (
+        <FeatureCard {...feature} />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import FAQAccordion from '../components/FAQAccordion.jsx';
+
+const faqData = [
+  {
+    question: 'Does Aegis slow down ChatGPT?',
+    answer:
+      'No. Aegis runs with minimal overhead and blocks ad elements before they impact the conversation flow.',
+  },
+  {
+    question: 'What data does Aegis collect?',
+    answer: 'None. Aegis runs locally with no analytics, tracking, or server-side conversation storage.',
+  },
+  {
+    question: 'Does it work on mobile?',
+    answer: 'The first release targets desktop Chrome. Mobile browser support is planned.',
+  },
+  {
+    question: 'Can I use Aegis on other AI platforms?',
+    answer: 'Support starts with ChatGPT and expands to additional AI chat platforms over time.',
+  },
+  {
+    question: 'Is Aegis free forever?',
+    answer: 'Yes. Aegis is intended to remain free and open source.',
+  },
+];
+---
+
+<Base title="Aegis FAQ" description="Answers to common questions about Aegis privacy, compatibility, and setup.">
+  <section class="bg-off-white py-20 dark:bg-charcoal">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-center text-4xl font-bold text-navy dark:text-white">Frequently Asked Questions</h1>
+      <p class="mt-4 text-center text-base text-gray-muted">
+        Practical answers before you install.
+      </p>
+
+      <div class="mt-10 reveal">
+        <FAQAccordion client:load items={faqData} />
+      </div>
+    </div>
+  </section>
+</Base>

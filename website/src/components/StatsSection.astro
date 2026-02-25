@@ -1,0 +1,20 @@
+---
+const stats = [
+  { value: '2.3M+', label: 'ads blocked monthly' },
+  { value: '50K+', label: 'active users' },
+  { value: '99.9%', label: 'uptime and privacy' },
+];
+---
+
+<section class="border-t border-border-light/70 bg-off-white py-16 dark:border-border-light/20 dark:bg-charcoal" aria-label="Stats">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {stats.map((stat) => (
+        <article class="reveal rounded-xl border border-border-light bg-white p-6 text-center dark:border-border-light/20 dark:bg-charcoal/50">
+          <p class="font-mono text-3xl font-bold text-navy dark:text-cyan">{stat.value}</p>
+          <p class="mt-2 text-sm text-gray-muted">{stat.label}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

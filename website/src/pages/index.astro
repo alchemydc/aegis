@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import StatsSection from '../components/StatsSection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import TrustSection from '../components/TrustSection.astro';
+import FAQAccordion from '../components/FAQAccordion.jsx';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const faqData = [
+  {
+    question: 'Does Aegis slow down ChatGPT?',
+    answer:
+      "No. Aegis operates with negligible overhead and removes ad elements before they interrupt your session.",
+  },
+  {
+    question: 'What data does Aegis collect?',
+    answer:
+      'None. Aegis runs on your device with no analytics, no tracking, and no server-side logging.',
+  },
+  {
+    question: 'Does it work on mobile?',
+    answer:
+      'Not yet. The initial release targets desktop Chrome. Mobile support is on the roadmap.',
+  },
+  {
+    question: 'Can I use it on other AI platforms?',
+    answer:
+      'Aegis starts with ChatGPT first. Additional AI platform support is planned after launch.',
+  },
+  {
+    question: 'Is it free forever?',
+    answer: 'Yes. Aegis is free and open source, with no premium lock-in.',
+  },
+];
+
+---
+
+<Base
+  title="Aegis - Block Ads on ChatGPT"
+  description="Aegis shields your AI conversations from intrusive advertising."
+>
+  <Hero />
+  <StatsSection />
+  <FeaturesSection />
+  <HowItWorks />
+  <TrustSection />
+
+  <section id="faq" class="bg-off-white py-20 dark:bg-charcoal" aria-labelledby="faq-heading">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h2 id="faq-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Frequently Asked Questions</h2>
+      <div class="mt-8 reveal">
+        <FAQAccordion client:load items={faqData} />
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Base>

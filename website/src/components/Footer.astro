@@ -1,0 +1,60 @@
+---
+const sections = [
+  {
+    title: 'Product',
+    links: [
+      { href: '/features', label: 'Features' },
+      { href: '/how-it-works', label: 'How It Works' },
+      { href: '/download', label: 'Download' },
+      { href: '/faq', label: 'FAQ' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/blog', label: 'Blog (soon)' },
+      { href: '/contact', label: 'Contact' },
+      { href: '#', label: 'Roadmap' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { href: '/privacy-security', label: 'Privacy' },
+      { href: '#', label: 'Terms' },
+      { href: '#', label: 'Transparency' },
+    ],
+  },
+];
+---
+
+<footer class="bg-charcoal text-off-white">
+  <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-3">
+      {sections.map((section) => (
+        <section>
+          <h3 class="text-base font-semibold text-cyan">{section.title}</h3>
+          <ul class="mt-4 space-y-2">
+            {section.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-off-white/85 transition-colors hover:text-cyan">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 border-t border-border-light/10 pt-6 text-sm text-off-white/80 sm:flex-row sm:items-center sm:justify-between">
+      <p>Copyright 2026 Aegis. Open Source.</p>
+      <div class="flex items-center gap-5">
+        <a href="#" class="hover:text-cyan">GitHub</a>
+        <a href="#" class="hover:text-cyan">X</a>
+        <a href="#" class="hover:text-cyan">Reddit</a>
+      </div>
+    </div>
+  </div>
+</footer>

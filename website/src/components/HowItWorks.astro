@@ -1,0 +1,52 @@
+---
+const steps = [
+  {
+    title: 'Install Aegis Extension',
+    description: 'Install with one click and no setup. Aegis starts protecting immediately.',
+    mediaTitle: 'Chrome Web Store install screen',
+    mediaNote: 'Screenshot coming soon',
+  },
+  {
+    title: 'Browse ChatGPT Normally',
+    description: 'Use ChatGPT as usual while Aegis runs quietly in the background.',
+    mediaTitle: 'Clean conversation view',
+    mediaNote: 'Screenshot coming soon',
+  },
+  {
+    title: 'Ads Blocked in Real-Time',
+    description: 'Promoted content is intercepted and removed before it interrupts your flow.',
+    mediaTitle: 'Before and after ad removal',
+    mediaNote: 'Demo visual coming soon',
+  },
+];
+---
+
+<section id="how-it-works" class="bg-gray-50 py-20 dark:bg-charcoal/95" aria-labelledby="how-heading">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <h2 id="how-heading" class="text-center text-3xl font-bold text-navy dark:text-white">How It Works</h2>
+
+    <div class="mt-12 space-y-8">
+      {steps.map((step, idx) => (
+        <article class={`reveal grid gap-6 rounded-xl border border-border-light bg-white p-6 md:grid-cols-2 md:items-center dark:border-border-light/20 dark:bg-charcoal/50 ${idx % 2 === 1 ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''}`}>
+          <div>
+            <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
+              {idx + 1}
+            </div>
+            <h3 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{step.title}</h3>
+            <p class="mt-3 text-base leading-7 text-gray-muted">{step.description}</p>
+          </div>
+
+          <div class="aspect-video rounded-lg border border-border-light bg-border-light/60 dark:border-border-light/40 dark:bg-charcoal/80">
+            <div class="flex h-full flex-col items-center justify-center px-4 text-center">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan/40 bg-cyan/15 text-cyan">
+                image
+              </span>
+              <p class="mt-3 text-sm font-semibold text-navy dark:text-white">{step.mediaTitle}</p>
+              <p class="mt-1 text-xs text-gray-muted">{step.mediaNote}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
