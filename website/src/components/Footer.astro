@@ -27,6 +27,7 @@ const sections = [
     ],
   },
 ];
+const withBase = (path) => (path.startsWith('/') ? `${import.meta.env.BASE_URL}${path.slice(1)}` : path);
 ---
 
 <footer class="bg-charcoal text-off-white">
@@ -38,7 +39,7 @@ const sections = [
           <ul class="mt-4 space-y-2">
             {section.links.map((link) => (
               <li>
-                <a href={link.href} class="text-sm text-off-white/85 transition-colors hover:text-cyan">
+                <a href={withBase(link.href)} class="text-sm text-off-white/85 transition-colors hover:text-cyan">
                   {link.label}
                 </a>
               </li>

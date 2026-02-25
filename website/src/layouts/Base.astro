@@ -13,6 +13,10 @@ const {
   description = 'Aegis shields AI conversations from intrusive advertising.',
 } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const basePath = import.meta.env.BASE_URL;
+const faviconSvg = `${basePath}favicon.svg`;
+const faviconIco = `${basePath}favicon.ico`;
+const ogImage = new URL(`${basePath}images/aegis_logo.png`, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -23,15 +27,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg} />
+    <link rel="icon" href={faviconIco} />
     <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="/images/aegis_logo.png" />
+    <meta property="og:image" content={ogImage} />
   </head>
   <body class="bg-off-white text-slate dark:bg-charcoal dark:text-off-white">
     <Navbar />
