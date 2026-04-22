@@ -3,28 +3,30 @@ import FeatureCard from './FeatureCard.astro';
 
 const features = [
   {
-    icon: '🛡️',
-    title: 'Real-Time Blocking',
+    icon: '🚫',
+    title: 'Strip the Ads',
     description:
-      'Detects and removes ads the moment they appear. No lag and no manual intervention.',
+      'Detect and remove promoted content, sponsored suggestions, and commercial insertions from AI conversations. This is where it starts.',
   },
   {
-    icon: '⚡',
-    title: 'Zero-Click Installation',
-    description: 'One-click install from the Chrome Web Store. No configuration required.',
+    icon: '🔍',
+    title: 'Surface the Influence',
+    description:
+      'See when responses are shaped by commercial partnerships, training data biases, or platform priorities. A transparency layer for AI. Coming soon.',
   },
   {
-    icon: '🙈',
-    title: 'Transparent Privacy',
+    icon: '⚙️',
+    title: 'Set Your Boundaries',
     description:
-      'No data collection. Runs entirely on your device and remains open source for community review.',
+      'Define what your AI should and shouldn\'t do. User-side constraints and preferences that the platform can\'t override. The long-term vision.',
   },
 ];
 ---
 
 <section id="features" class="bg-off-white py-20 dark:bg-charcoal" aria-labelledby="features-heading">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <h2 id="features-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Key Features</h2>
+    <h2 id="features-heading" class="text-center text-3xl font-bold text-navy dark:text-white">What We're Building</h2>
+    <p class="mt-3 text-center text-base text-gray-muted">Three layers. One mission: put you back in control.</p>
 
     <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {features.map((feature) => (

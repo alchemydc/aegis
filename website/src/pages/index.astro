@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import StatsSection from '../components/StatsSection.astro';
+import ProblemStatement from '../components/ProblemStatement.astro';
 import FeaturesSection from '../components/FeaturesSection.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import TrustSection from '../components/TrustSection.astro';
@@ -10,39 +10,40 @@ import FinalCTA from '../components/FinalCTA.astro';
 
 const faqData = [
   {
-    question: 'Does Aegis slow down ChatGPT?',
+    question: 'What does adblocked.ai actually do today?',
     answer:
-      "No. Aegis operates with negligible overhead and removes ad elements before they interrupt your session.",
+      'It\'s a browser extension that detects and removes ads, sponsored content, and promoted suggestions from AI chat interfaces. Currently supports ChatGPT, with more platforms planned.',
   },
   {
-    question: 'What data does Aegis collect?',
+    question: 'Is this just an ad blocker?',
     answer:
-      'None. Aegis runs on your device with no analytics, no tracking, and no server-side logging.',
+      'Ad blocking is where it starts. The larger goal is a user-side control layer for AI\u2014surfacing commercial influence, enabling user-set boundaries, and giving you visibility into how AI responses are shaped.',
   },
   {
-    question: 'Does it work on mobile?',
+    question: 'What data do you collect?',
     answer:
-      'Not yet. The initial release targets desktop Chrome. Mobile support is on the roadmap.',
+      'None. adblocked.ai runs locally in your browser with no analytics, no tracking, and no server-side logging.',
   },
   {
-    question: 'Can I use it on other AI platforms?',
+    question: 'Does it slow down ChatGPT?',
     answer:
-      'Aegis starts with ChatGPT first. Additional AI platform support is planned after launch.',
+      'No. The extension operates with negligible overhead and removes ad elements before they render.',
   },
   {
-    question: 'Is it free forever?',
-    answer: 'Yes. Aegis is free and open source, with no premium lock-in.',
+    question: 'Is it free and open source?',
+    answer:
+      'Yes and yes. The core tool will remain free and open source.',
   },
 ];
 
 ---
 
 <Base
-  title="Aegis - Block Ads on ChatGPT"
-  description="Aegis shields your AI conversations from intrusive advertising."
+  title="adblocked.ai — Block Ads in AI. Then See Everything Else."
+  description="adblocked.ai is a user-side layer that starts by blocking ads in AI conversations and builds toward full visibility and control."
 >
   <Hero />
-  <StatsSection />
+  <ProblemStatement />
   <FeaturesSection />
   <HowItWorks />
   <TrustSection />

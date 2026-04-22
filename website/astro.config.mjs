@@ -8,5 +8,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
 	integrations: [react(), tailwind(), sitemap()],
 	output: 'static',
-	site: 'https://alchemydc.github.io',
+	site: 'https://adblocked.ai',
 });

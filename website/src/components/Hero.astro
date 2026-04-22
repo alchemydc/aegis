@@ -1,33 +1,28 @@
 ---
 import CTAButton from './CTAButton.astro';
-
-const logoSrc = `${import.meta.env.BASE_URL}images/aegis_logo.png`;
 ---
 
 <section class="relative overflow-hidden bg-charcoal" aria-labelledby="hero-heading">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(0,217,255,0.18),transparent_60%)]"></div>
-  <div class="relative mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
-    <img
-      src={logoSrc}
-      alt="Aegis logo"
-      class="mx-auto w-full max-w-[480px]"
-      loading="eager"
-    />
+  <div class="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
 
-    <h1 id="hero-heading" class="mt-8 text-4xl font-black text-white sm:text-5xl md:text-6xl">
-      Block Ads on ChatGPT. Instantly.
+    <p class="font-mono text-sm font-medium uppercase tracking-widest text-cyan">adblocked.ai</p>
+
+    <h1 id="hero-heading" class="mt-6 text-4xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
+      Your AI has ads now.<br class="hidden sm:inline" />
+      That's just the beginning.
     </h1>
 
-    <p class="mt-5 max-w-3xl text-lg text-off-white/80 md:text-xl">
-      AI platforms are injecting ads into your conversations. Aegis shields you silently,
-      instantly, for free.
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-off-white/80 md:text-xl">
+      Platforms are shaping your AI conversations with ads, partnerships, and commercial priorities.
+      adblocked.ai starts by removing the obvious&mdash;and builds toward showing you everything else.
     </p>
 
-    <p class="mt-3 text-lg font-semibold text-cyan">Ads Off. Conversations On.</p>
+    <p class="mt-4 text-lg font-semibold text-cyan">See what they're selling you.</p>
 
     <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-      <CTAButton href="/download" size="lg">Install Free Extension</CTAButton>
-      <CTAButton href="#how-it-works" variant="secondary" size="lg">See How It Works</CTAButton>
+      <CTAButton href="/download" size="lg">Install the Extension</CTAButton>
+      <CTAButton href="/about" variant="secondary" size="lg">Why This Matters</CTAButton>
     </div>
   </div>
 </section>

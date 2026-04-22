@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alchemydc.github.io/aegis/sitemap-index.xml
+Sitemap: https://adblocked.ai/sitemap-index.xml

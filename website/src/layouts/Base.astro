@@ -10,13 +10,13 @@ interface Props {
 
 const {
   title,
-  description = 'Aegis shields AI conversations from intrusive advertising.',
+  description = 'adblocked.ai — a user-side layer for visibility and control in AI conversations.',
 } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const basePath = import.meta.env.BASE_URL;
 const faviconSvg = `${basePath}favicon.svg`;
 const faviconIco = `${basePath}favicon.ico`;
-const ogImage = new URL(`${basePath}images/aegis_logo.png`, Astro.site).toString();
+const ogImage = new URL(`${basePath}images/og-image.png`, Astro.site).toString();
 ---
 
 <!doctype html>

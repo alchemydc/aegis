@@ -3,24 +3,24 @@ const trustItems = [
   {
     icon: '🔒',
     title: 'No Data Collection',
-    description: 'Aegis runs on your device. Your conversations never touch external servers.',
+    description: 'adblocked.ai runs entirely on your device. Your conversations never leave your browser. We can\'t see what you say even if we wanted to.',
   },
   {
     icon: '🧩',
     title: 'Open Source',
-    description: 'Code is transparent and open for community inspection and audits.',
+    description: 'The code is public. Every decision the extension makes is auditable. A tool that claims to surface hidden influence cannot itself be a black box.',
   },
   {
     icon: '✅',
-    title: 'GDPR Aligned',
-    description: 'Designed around privacy principles and compliant-by-default behavior.',
+    title: 'Privacy by Design',
+    description: 'No analytics, no tracking, no server-side anything. Built around GDPR principles as a design choice, not a compliance checkbox.',
   },
 ];
 ---
 
 <section id="privacy" class="bg-off-white py-20 dark:bg-charcoal" aria-labelledby="privacy-heading">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <h2 id="privacy-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Your Privacy Is Sacred</h2>
+    <h2 id="privacy-heading" class="text-center text-3xl font-bold text-navy dark:text-white">Why This Is Open Source</h2>
 
     <div class="mt-10 grid gap-6 md:grid-cols-3">
       {trustItems.map((item) => (

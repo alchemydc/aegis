@@ -1,35 +1,115 @@
 ---
 import Base from '../layouts/Base.astro';
-
-const values = [
-  'Defend user focus in AI chat interfaces',
-  'Protect conversation integrity from monetization noise',
-  'Ship privacy-first tools that stay transparent and open',
-];
 ---
 
-<Base title="About Aegis" description="Why Aegis exists and the mission behind ad-free AI conversations.">
-  <section class="bg-off-white py-20 dark:bg-charcoal">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-navy dark:text-white">About Aegis</h1>
-      <p class="mt-5 text-base leading-7 text-gray-muted">
-        AI platforms are increasingly monetizing user interactions. Aegis exists to keep conversations useful,
-        private, and free from intrusive ad placement.
-      </p>
+<Base title="About adblocked.ai" description="Why adblocked.ai exists and the vision behind a user-side control layer for AI.">
+  <section class="bg-charcoal py-20">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <p class="font-mono text-sm font-medium uppercase tracking-widest text-cyan">Manifesto</p>
+      <h1 class="mt-4 text-4xl font-bold leading-tight text-white sm:text-5xl">
+        AI is the new interface.<br />Who controls yours?
+      </h1>
+    </div>
+  </section>
 
-      <h2 class="mt-10 text-2xl font-semibold text-navy dark:text-white">Mission</h2>
-      <ul class="mt-4 list-disc space-y-2 pl-5 text-base text-gray-muted">
-        {values.map((value) => (
-          <li>{value}</li>
-        ))}
-      </ul>
+  <section class="bg-off-white py-16 dark:bg-charcoal">
+    <div class="mx-auto max-w-3xl space-y-8 px-4 text-base leading-relaxed text-gray-muted sm:px-6 lg:px-8">
 
-      <article class="reveal mt-10 rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
-        <h3 class="text-xl font-semibold text-navy dark:text-white">Team</h3>
-        <p class="mt-3 text-sm text-gray-muted">
-          Team details will be published soon. For now, Aegis is focused on shipping a reliable MVP for ChatGPT.
+      <div class="reveal">
+        <h2 class="text-2xl font-semibold text-navy dark:text-white">The shift</h2>
+        <p class="mt-4">
+          AI is becoming the primary interface to information, decisions, and eventually action.
+          Not in some distant future&mdash;right now. People are asking AI for medical guidance,
+          financial options, product recommendations, legal interpretations. The answers they get
+          shape what they do next.
         </p>
-      </article>
+        <p class="mt-4">
+          And just like the web before it, this new interface is already starting to reflect the
+          incentives of the platforms that control it.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <h2 class="text-2xl font-semibold text-navy dark:text-white">The problem</h2>
+        <p class="mt-4">
+          Ads are showing up in AI conversations. Responses are being shaped by partnerships,
+          training data, and commercial interests. But this time the stakes are different.
+        </p>
+        <p class="mt-4">
+          On the old internet, you could see a banner ad and decide to ignore it. You could view
+          source. You could install an ad blocker and move on. The manipulation was visible, even
+          if it was pervasive.
+        </p>
+        <p class="mt-4">
+          In AI, the influence is embedded in the answer itself. It's not about what content you
+          see&mdash;it's about what answers you get, what options are presented to you, and what
+          decisions you make as a result. You can't view source on a large language model.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <h2 class="text-2xl font-semibold text-navy dark:text-white">The gap</h2>
+        <p class="mt-4">
+          Right now, users have almost no way to:
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>See when something is being influenced or targeted</li>
+          <li>Understand how outputs are being shaped</li>
+          <li>Set boundaries on what they will or won't accept</li>
+          <li>Control how AI systems behave on their behalf</li>
+        </ul>
+        <p class="mt-4">
+          We're moving from an internet where users browsed information to one where systems
+          interpret and act on their behalf. That creates a much deeper form of dependency&mdash;and
+          a much greater loss of visibility and control.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <h2 class="text-2xl font-semibold text-navy dark:text-white">What we're building</h2>
+        <p class="mt-4">
+          adblocked.ai is not an ad blocker. Or rather, it is&mdash;but that's just the starting point.
+        </p>
+        <p class="mt-4">
+          We're building a user-side layer that brings back visibility, control, and agency in AI
+          systems. Not owned by the platforms. Not optimized for their incentives. Aligned with the user.
+        </p>
+        <p class="mt-4 font-medium text-navy dark:text-white">
+          Start simple:
+        </p>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <li>Block ads in AI conversations</li>
+          <li>Strip obvious manipulation</li>
+        </ul>
+        <p class="mt-4 font-medium text-navy dark:text-white">
+          Then expand:
+        </p>
+        <ul class="mt-2 list-disc space-y-1 pl-5">
+          <li>Surface bias and commercial influence</li>
+          <li>Show how outputs are being shaped</li>
+          <li>Allow users to define boundaries and preferences</li>
+          <li>Enable users&mdash;and eventually agents&mdash;to operate under those constraints</li>
+        </ul>
+        <p class="mt-4">
+          Over time, this becomes a control and observability layer for AI.
+        </p>
+      </div>
+
+      <div class="reveal rounded-xl border-l-4 border-cyan bg-white p-6 dark:bg-charcoal/50">
+        <p class="text-lg font-medium leading-relaxed text-navy dark:text-white">
+          The last version of the internet trained us to accept invisible manipulation.
+          This version will go further&mdash;unless something exists to counter it.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <h2 class="text-2xl font-semibold text-navy dark:text-white">Team</h2>
+        <p class="mt-4">
+          Team details will be published soon. For now, adblocked.ai is focused on shipping the
+          first layer&mdash;a reliable, open-source browser extension that blocks ads in AI conversations.
+        </p>
+      </div>
+
     </div>
   </section>
 </Base>

@@ -8,12 +8,12 @@ export default function ContactForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const subject = encodeURIComponent('Aegis website inquiry');
+    const subject = encodeURIComponent('adblocked.ai inquiry');
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     );
 
-    window.location.href = `mailto:hello@aegis.dev?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@adblocked.ai?subject=${subject}&body=${body}`;
   };
 
   return (
