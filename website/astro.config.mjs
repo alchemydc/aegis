@@ -9,5 +9,4 @@ export default defineConfig({
 	integrations: [react(), tailwind(), sitemap()],
 	output: 'static',
 	site: 'https://alchemydc.github.io',
-	base: '/aegis/',
 });
