@@ -10,7 +10,8 @@ The active codebase in this repository is the marketing website in `website/`.
 
 ```text
 .
-├── docs/                 Product brief, design notes, implementation plan
+├── docs/                 Product brief, design notes, design decisions, implementation plan
+├── plugin/               Browser extension (WXT + TypeScript, MV3)
 ├── website/              Astro marketing site
 └── README.md             This file
 ```
@@ -55,41 +56,54 @@ npm run preview
 
 GitHub Pages deploys are automated via GitHub Actions using `.github/workflows/deploy.yml`.
 
-## Blocking Technology (Placeholders)
+## Local Development (Extension)
 
-These sections are intentionally placeholders while extension implementation is pending.
+### Prerequisites
 
-### Target Surfaces (Placeholder)
+- Node.js 20+
+- npm 10+
 
-- ChatGPT web UI (initial target)
-- Additional AI chat surfaces (future)
+### 1. Install dependencies
 
-### Detection Strategy (Placeholder)
+```bash
+cd plugin
+npm install
+```
 
-- Rule-based DOM pattern detection
-- Sponsored element heuristics
-- Resilience to UI/layout changes
+### 2. Start dev mode
 
-### Neutralization Strategy (Placeholder)
+```bash
+npm run dev
+```
 
-- Remove or hide matched ad containers
-- Preserve layout stability after removal
-- Minimize visual flicker
+WXT launches a Chromium window with the extension auto-loaded. Open `chatgpt.com`; placeholder selectors from `rules/chatgpt.json` will be hidden.
 
-### Privacy and Data Handling (Placeholder)
+### 3. Type-check
 
-- Local-only processing in browser context
-- No conversation exfiltration
-- No telemetry by default
+```bash
+npm run compile
+```
 
-### Testing Approach (Placeholder)
+### 4. Production build
 
-- Snapshot tests for known ad patterns
-- Regression checks against UI updates
-- Manual verification in supported browsers
+```bash
+npm run build
+```
 
-### Packaging and Distribution (Placeholder)
+Output is generated in `plugin/.output/chrome-mv3/`. Load it as an unpacked extension in Chrome via `chrome://extensions` → Developer mode → Load unpacked.
 
-- Browser extension packaging plan
-- Versioning and release checklist
-- Store submission workflow
+### Architecture overview
+
+The extension is a modular rule applier — selectors are curated externally and consumed via `rules/<platform>.json`. See:
+- `docs/plugin_implementation_plan.md` — implementation plan and phase breakdown
+- `docs/design_decisions.md` — telemetry posture, detection strategy, stack rationale
+- `docs/high_level_design_prompt.md` — original architecture proposal
+
+### Privacy mechanical test
+
+The extension is committed to zero outbound telemetry in v0. To verify:
+
+1. Open Chrome DevTools → Network tab.
+2. Filter by the extension's IDs (content script + service worker).
+3. Use the extension on `chatgpt.com`.
+4. Confirm zero outbound requests.
