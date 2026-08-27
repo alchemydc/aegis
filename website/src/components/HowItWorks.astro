@@ -1,52 +1,46 @@
 ---
+import BeforeAfter from './BeforeAfter.astro';
+
 const steps = [
   {
     title: 'Install the Extension',
     description: 'One click from the Chrome Web Store. adblocked.ai runs locally in your browser with zero configuration.',
-    mediaTitle: 'Chrome Web Store install screen',
-    mediaNote: 'Screenshot coming soon',
   },
   {
     title: 'Use AI Normally',
     description: 'Open ChatGPT and chat as usual. The extension works silently in the background. More platforms coming.',
-    mediaTitle: 'Clean conversation view',
-    mediaNote: 'Screenshot coming soon',
-  },
-  {
-    title: 'See the Difference',
-    description: 'Ads and promoted content are stripped before they reach you. Your conversation is yours again. This is the first layer\u2014more visibility is coming.',
-    mediaTitle: 'Before and after ad removal',
-    mediaNote: 'Demo visual coming soon',
   },
 ];
+
+const demoStep = {
+  title: 'See the Difference',
+  description: 'Ads and promoted content are stripped before they reach you. Your conversation is yours again. This is the first layer—more visibility is coming.',
+};
 ---
 
 <section id="how-it-works" class="bg-gray-50 py-20 dark:bg-charcoal/95" aria-labelledby="how-heading">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <h2 id="how-heading" class="text-center text-3xl font-bold text-navy dark:text-white">How It Works</h2>
 
-    <div class="mt-12 space-y-8">
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
       {steps.map((step, idx) => (
-        <article class={`reveal grid gap-6 rounded-xl border border-border-light bg-white p-6 md:grid-cols-2 md:items-center dark:border-border-light/20 dark:bg-charcoal/50 ${idx % 2 === 1 ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''}`}>
-          <div>
-            <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
-              {idx + 1}
-            </div>
-            <h3 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{step.title}</h3>
-            <p class="mt-3 text-base leading-7 text-gray-muted">{step.description}</p>
+        <article class="reveal rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+          <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
+            {idx + 1}
           </div>
-
-          <div class="aspect-video rounded-lg border border-border-light bg-border-light/60 dark:border-border-light/40 dark:bg-charcoal/80">
-            <div class="flex h-full flex-col items-center justify-center px-4 text-center">
-              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan/40 bg-cyan/15 text-cyan">
-                image
-              </span>
-              <p class="mt-3 text-sm font-semibold text-navy dark:text-white">{step.mediaTitle}</p>
-              <p class="mt-1 text-xs text-gray-muted">{step.mediaNote}</p>
-            </div>
-          </div>
+          <h3 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{step.title}</h3>
+          <p class="mt-3 text-base leading-7 text-gray-muted">{step.description}</p>
         </article>
       ))}
     </div>
+
+    <article class="reveal mt-6 rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+      <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
+        {steps.length + 1}
+      </div>
+      <h3 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{demoStep.title}</h3>
+      <p class="mt-3 text-base leading-7 text-gray-muted">{demoStep.description}</p>
+      <BeforeAfter />
+    </article>
   </div>
 </section>

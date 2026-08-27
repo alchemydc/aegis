@@ -13,20 +13,27 @@ const sections = [
     title: 'Company',
     links: [
       { href: '/about', label: 'About' },
-      { href: '/blog', label: 'Blog (soon)' },
+      { label: 'Blog' },
       { href: '/contact', label: 'Contact' },
-      { href: '#', label: 'Roadmap' },
+      { label: 'Roadmap' },
     ],
   },
   {
     title: 'Legal',
     links: [
       { href: '/privacy-security', label: 'Privacy' },
-      { href: '#', label: 'Terms' },
-      { href: '#', label: 'Transparency' },
+      { label: 'Terms' },
+      { label: 'Transparency' },
     ],
   },
 ];
+
+const social = [
+  { href: 'https://github.com/alchemydc/aegis', label: 'GitHub' },
+  { label: 'X' },
+  { label: 'Reddit' },
+];
+
 const withBase = (path) => (path.startsWith('/') ? `${import.meta.env.BASE_URL}${path.slice(1)}` : path);
 ---
 
@@ -39,9 +46,18 @@ const withBase = (path) => (path.startsWith('/') ? `${import.meta.env.BASE_URL}$
           <ul class="mt-4 space-y-2">
             {section.links.map((link) => (
               <li>
-                <a href={withBase(link.href)} class="text-sm text-off-white/85 transition-colors hover:text-cyan">
-                  {link.label}
-                </a>
+                {link.href ? (
+                  <a href={withBase(link.href)} class="text-sm text-off-white/85 transition-colors hover:text-cyan">
+                    {link.label}
+                  </a>
+                ) : (
+                  <span class="inline-flex items-center gap-2 text-sm text-off-white/40">
+                    {link.label}
+                    <span class="rounded-full border border-off-white/15 px-1.5 py-px font-mono text-[9px] uppercase tracking-widest text-off-white/45">
+                      soon
+                    </span>
+                  </span>
+                )}
               </li>
             ))}
           </ul>
@@ -52,9 +68,15 @@ const withBase = (path) => (path.startsWith('/') ? `${import.meta.env.BASE_URL}$
     <div class="mt-10 flex flex-col gap-4 border-t border-border-light/10 pt-6 text-sm text-off-white/80 sm:flex-row sm:items-center sm:justify-between">
       <p>&copy; 2026 adblocked.ai. Open Source.</p>
       <div class="flex items-center gap-5">
-        <a href="#" class="hover:text-cyan">GitHub</a>
-        <a href="#" class="hover:text-cyan">X</a>
-        <a href="#" class="hover:text-cyan">Reddit</a>
+        {social.map((item) =>
+          item.href ? (
+            <a href={item.href} class="transition-colors hover:text-cyan" rel="noopener">
+              {item.label}
+            </a>
+          ) : (
+            <span class="text-off-white/40">{item.label}</span>
+          ),
+        )}
       </div>
     </div>
   </div>
