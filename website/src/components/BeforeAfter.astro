@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import beforeImg from '../assets/demo/chatgpt-before.png';
+import afterImg from '../assets/demo/chatgpt-after.png';
+
+const widths = [720, 1120, 1680, 2240];
+const sizes = '(min-width: 1200px) 1120px, 100vw';
+---
+
+<figure class="mt-6">
+  <div
+    data-before-after
+    style="--pos: 50%"
+    class="relative aspect-[2940/1662] w-full select-none overflow-hidden rounded-lg border border-border-light bg-white focus-within:ring-2 focus-within:ring-cyan focus-within:ring-offset-2 dark:border-border-light/40 dark:ring-offset-charcoal"
+  >
+    <Image
+      src={beforeImg}
+      alt="ChatGPT answering a question about Atlantis. A sponsored 'Atlantis Bahamas' ad card sits below the response, followed by a disclaimer reading 'Ads do not influence the answers you get from ChatGPT.'"
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      draggable="false"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+
+    <Image
+      src={afterImg}
+      alt="The same ChatGPT response with adblocked.ai enabled. The sponsored ad card and the ads disclaimer are gone; only the answer remains."
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      draggable="false"
+      style="clip-path: inset(0 0 0 var(--pos))"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+
+    <div
+      style="left: var(--pos)"
+      class="pointer-events-none absolute inset-y-0 z-10 w-0.5 -translate-x-1/2 bg-cyan shadow-[0_0_12px_rgba(0,217,255,0.6)]"
+    >
+    </div>
+
+    <div
+      style="left: var(--pos)"
+      class="pointer-events-none absolute top-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-cyan bg-charcoal/90 text-cyan shadow-lg"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+        <path d="M9 6 4 12l5 6" />
+        <path d="m15 6 5 6-5 6" />
+      </svg>
+    </div>
+
+    <span class="pointer-events-none absolute bottom-3 left-3 z-10 rounded-full bg-charcoal/85 px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-widest text-off-white">
+      Before
+    </span>
+    <span class="pointer-events-none absolute bottom-3 right-3 z-10 rounded-full bg-charcoal/85 px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-widest text-cyan">
+      After
+    </span>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      step="0.1"
+      value="50"
+      aria-label="Drag to reveal what adblocked.ai removes from a ChatGPT conversation"
+      class="absolute inset-0 z-20 h-full w-full cursor-ew-resize bg-transparent opacity-0"
+    />
+  </div>
+
+  <figcaption class="mt-3 text-xs leading-5 text-gray-muted">
+    A real ChatGPT session. Drag the handle: on the left is ChatGPT's sponsored result,
+    on the right is the same answer with adblocked.ai enabled.
+  </figcaption>
+</figure>
+
+<style>
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: pan-y;
+  }
+
+  /* A zero-width thumb keeps the value linear across the full track, so the
+     divider tracks the pointer exactly. The visible handle is drawn separately. */
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1px;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 1px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    cursor: ew-resize;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-before-after]').forEach((root) => {
+    const range = root.querySelector('input[type="range"]');
+    if (!(range instanceof HTMLInputElement) || !(root instanceof HTMLElement)) return;
+
+    const sync = () => root.style.setProperty('--pos', `${range.value}%`);
+    range.addEventListener('input', sync);
+    sync();
+  });
+</script>

@@ -1,29 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
 
 const steps = [
   {
     title: 'Install from the Chrome Web Store',
     detail:
       'Install adblocked.ai in one click. Once enabled, it immediately begins monitoring supported AI chat interfaces.',
-    mediaTitle: 'Chrome Web Store install screen',
-    mediaNote: 'Screenshot coming soon',
   },
   {
     title: 'Open ChatGPT and Continue as Normal',
     detail:
       'No workflow changes. Chat exactly the same way while adblocked.ai runs silently in the background, watching for injected promotional content.',
-    mediaTitle: 'Clean conversation view',
-    mediaNote: 'Screenshot coming soon',
-  },
-  {
-    title: 'Ads Removed. Clarity Restored.',
-    detail:
-      'When ad elements appear, adblocked.ai removes them in real-time. Your conversations stay clear and uninterrupted. This is the first layer\u2014more visibility is coming.',
-    mediaTitle: 'Before and after ad removal',
-    mediaNote: 'Demo visual coming soon',
   },
 ];
+
+const demoStep = {
+  title: 'Ads Removed. Clarity Restored.',
+  detail:
+    'When ad elements appear, adblocked.ai removes them in real-time. Your conversations stay clear and uninterrupted. This is the first layer—more visibility is coming.',
+};
 ---
 
 <Base title="How adblocked.ai Works" description="See how adblocked.ai blocks ads in AI conversations in three simple steps.">
@@ -34,7 +30,7 @@ const steps = [
         Fast setup, invisible operation, immediate protection.
       </p>
 
-      <div class="mt-12 space-y-6">
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
         {steps.map((step, index) => (
           <article class="reveal rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
             <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
@@ -42,18 +38,18 @@ const steps = [
             </div>
             <h2 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{step.title}</h2>
             <p class="mt-3 text-base leading-7 text-gray-muted">{step.detail}</p>
-            <div class="mt-5 aspect-video rounded-lg border border-border-light bg-border-light/60 dark:border-border-light/40 dark:bg-charcoal/80">
-              <div class="flex h-full flex-col items-center justify-center px-4 text-center">
-                <span class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan/40 bg-cyan/15 text-cyan">
-                  image
-                </span>
-                <p class="mt-3 text-sm font-semibold text-navy dark:text-white">{step.mediaTitle}</p>
-                <p class="mt-1 text-xs text-gray-muted">{step.mediaNote}</p>
-              </div>
-            </div>
           </article>
         ))}
       </div>
+
+      <article class="reveal mt-6 rounded-xl border border-border-light bg-white p-6 dark:border-border-light/20 dark:bg-charcoal/50">
+        <div class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cyan font-semibold text-navy">
+          {steps.length + 1}
+        </div>
+        <h2 class="mt-3 text-2xl font-semibold text-navy dark:text-white">{demoStep.title}</h2>
+        <p class="mt-3 text-base leading-7 text-gray-muted">{demoStep.detail}</p>
+        <BeforeAfter />
+      </article>
     </div>
   </section>
 </Base>
