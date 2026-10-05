@@ -10,7 +10,7 @@ Aegis (product name **adblocked.ai**) blocks ads in cloud AI chat interfaces, st
 - `website/` — Astro static marketing site (Tailwind, React islands), deployed to https://adblocked.ai
 - `docs/` — product brief and design decisions. `docs/design_decisions.md` is the authoritative source for architecture choices (extension and website).
 
-Node 20+, npm 10+.
+Node 22+, npm 10+.
 
 ## Commands
 
