@@ -16,7 +16,7 @@ Node 22+, npm 10+.
 
 Extension (`cd plugin`):
 - `npm install` — also runs `wxt prepare` (generates `.wxt/` types)
-- `npm run dev` — launches Chromium with the extension loaded; open chatgpt.com
+- `npm run dev` — watch build to `plugin/.output/chrome-mv3-dev/`; load it unpacked via chrome://extensions, then open chatgpt.com (no auto-launched browser: the optional `web-ext` peer is intentionally not installed because it pulls in vulnerable deps)
 - `npm run compile` — type-check (`tsc --noEmit`)
 - `npm run lint` — ESLint
 - `npm run format` / `npm run format:check` — Prettier
