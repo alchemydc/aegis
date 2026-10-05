@@ -30,6 +30,13 @@ Website (`cd website`):
 
 There is no test suite. The website has no lint script.
 
+## Releases
+
+Only the extension is versioned (semver); the website is unversioned and deploys continuously.
+- release-please (`.github/workflows/release.yml`, `release-please-config.json`) derives the next version from conventional commits touching `plugin/` (`fix:` → patch, `feat:` → minor; breaking → minor while < 1.0) and keeps a release PR open. Merging it tags `vX.Y.Z`, creates the GitHub Release, and attaches the built zip.
+- Never edit versions by hand. `plugin/package.json` is the single source of truth; do not set `version` in `wxt.config.ts` (WXT reads it from `package.json`).
+- No pre-release suffixes (`-beta.1`): Chrome manifest versions must be dot-separated integers.
+
 ## Extension architecture
 
 The extension is a **rule applier, not a detector** — do not add detection heuristics or semantic classification. Ad selectors are curated externally by the team and bundled as JSON.

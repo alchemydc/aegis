@@ -104,7 +104,7 @@ The single function `reportBlocked(platform, hostname, selectorId)` in `lib/coun
 
 **Decision.** v0 ships as a sideloadable unpacked extension via GitHub Releases. Web Store submission deferred until rules are stable and the rule-update mechanism is in place.
 
-**Status.** No GitHub Release has been published yet; the extension is currently built from source (`npm run build`) and loaded unpacked.
+**Status.** Releases are cut by release-please: merging its release PR tags `vX.Y.Z` and publishes a GitHub Release with the built zip attached. Until the first release, the extension is built from source (`npm run build`) and loaded unpacked.
 
 **Open-source verification.** The Options page shows the build as `<manifest version> (<commit SHA>)` so users can verify their installed extension against the tagged release. The SHA comes from the `COMMIT_SHA` env var at build time (`dev` if unset).
 
