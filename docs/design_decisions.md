@@ -112,7 +112,7 @@ The single function `reportBlocked(platform, hostname, selectorId)` in `lib/coun
 
 ## 6. Network blocking (declarativeNetRequest)
 
-**Decision.** The `declarativeNetRequest` permission is declared in `wxt.config.ts`, but no rulesets ship yet. It is reserved for blocking ad-server or tracking requests if AI platforms start making them; today all blocking is cosmetic (CSS on first-party DOM).
+**Decision.** All blocking is cosmetic today (CSS on first-party DOM), so the `declarativeNetRequest` permission is not requested. Chrome Web Store review rejects unused permissions. If AI platforms start loading ads or trackers from separate servers, add `declarativeNetRequest` to `wxt.config.ts` along with the rulesets that use it.
 
 ---
 
