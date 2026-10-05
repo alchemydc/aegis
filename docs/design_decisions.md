@@ -1,6 +1,6 @@
 # Design Decisions
 
-This document captures architectural decisions for the **adblocked.ai** browser extension (codename: Aegis). It complements `docs/high_level_design_prompt.md` (the original architecture proposal) and `docs/plugin_implementation_plan.md` (the v0 implementation plan).
+This document is the living record of architectural decisions for **adblocked.ai** (codename: Aegis) — the browser extension and the marketing website. Keep it in sync with the code.
 
 ---
 
@@ -11,9 +11,9 @@ This document captures architectural decisions for the **adblocked.ai** browser 
 **Why.** The team has already captured ad selectors for ChatGPT and will provide more. Investing in detection heuristics, semantic classification, or "soft-match" logic inside the extension would duplicate work and add risk (false positives, fingerprintable signatures, larger attack surface for AI platforms to evade).
 
 **How.**
-- `rules/<platform>.json` — versioned selector lists keyed by hostname.
-- `lib/rules.ts` — host → rules loader.
-- `lib/blocker.ts` — CSS injection + scoped MutationObserver. **Zero detection logic.**
+- `rules/<platform>.json` — versioned selector lists keyed by platform.
+- `lib/rules.ts` — maps hostname → platform → bundled rules (`loadRulesForHost`).
+- `lib/blocker.ts` — hiding is a single injected `<style>` (`display: none !important`). A rAF-batched MutationObserver on the whole document only *counts* newly matched elements for the block counter. **Zero detection logic.**
 
 **Out of scope (deliberate).**
 - Soft / native in-response ad detection (the model itself recommending a partner product mid-stream). Requires semantic classification that conflicts with the privacy posture.
@@ -26,14 +26,14 @@ This document captures architectural decisions for the **adblocked.ai** browser 
 
 **Decision.** v0 ships **zero outbound telemetry**, with a single `reportBlocked()` seam in the service worker that today writes only to `chrome.storage.local`.
 
-**Why.** Keeps four future tiers achievable in v0.1+ without architectural rework, while preserving the brand's privacy promise on day one. The marketing site currently states "No data ever leaves your browser" — v0 honors that literally.
+**Why.** Keeps four future tiers achievable in v0.1+ without architectural rework, while preserving the brand's privacy promise on day one. The marketing site states that adblocked.ai runs locally with no analytics or tracking, and the Options page states "No data ever leaves your browser" — v0 honors that literally.
 
 ### Tiers considered
 
 #### Tier 0 — Zero telemetry (chosen for v0)
 
 - Counter is local; popup shows the user's own blocked count.
-- The marketing site's "2.3M+ ads blocked monthly" stat must be reframed (projection / footnote) or removed. Cannot be supported under this tier.
+- The marketing site's originally planned "2.3M+ ads blocked monthly" stat cannot be supported under this tier and has been removed.
 - **Strongest brand alignment** with the manifesto's privacy stance.
 - **Cost:** marketing loses an aggregate growth signal.
 
@@ -71,7 +71,7 @@ Even an anonymous payload reveals IP + UA at the network layer. To make the priv
 
 ### Architectural seam
 
-The single function `reportBlocked(platform, selectorId)` in `lib/counter.ts` is the only telemetry surface. Any future change to telemetry tier should go through this seam — no scattered `fetch()` calls in the content script or SW for analytics.
+The single function `reportBlocked(platform, hostname, selectorId)` in `lib/counter.ts`, called from the service worker on each `block` message from the content script, is the only telemetry surface. Any future change to telemetry tier should go through this seam — no scattered `fetch()` calls in the content script or SW for analytics.
 
 ---
 
@@ -83,6 +83,7 @@ The single function `reportBlocked(platform, selectorId)` in `lib/counter.ts` is
 - WXT abstracts manifest generation and the Chrome/Firefox/Safari API differences; this project will eventually target all three.
 - TypeScript is non-negotiable for DOM-heavy extensions where runtime errors silently break ad-blocking.
 - A toggle and a counter don't justify a UI framework. Vanilla DOM keeps the bundle small and easier to audit, which matters for an open-source privacy tool.
+- Popup and options are styled with plain CSS (no Tailwind) for the same reason.
 
 **Trade-off considered.** Plasmo (the original alternative) has had visibly slower release cadence through 2024–2025. WXT has the momentum. Vanilla MV3 + `webextension-polyfill` is also viable but re-implements manifest-per-target builds and Safari packaging — not worth it for a small surface area.
 
@@ -103,12 +104,33 @@ The single function `reportBlocked(platform, selectorId)` in `lib/counter.ts` is
 
 **Decision.** v0 ships as a sideloadable unpacked extension via GitHub Releases. Web Store submission deferred until rules are stable and the rule-update mechanism is in place.
 
-**Open-source verification.** Build hash (commit SHA + version) is surfaced in the Options page so users can verify their installed extension against the tagged release.
+**Status.** No GitHub Release has been published yet; the extension is currently built from source (`npm run build`) and loaded unpacked.
+
+**Open-source verification.** The Options page shows the build as `<manifest version> (<commit SHA>)` so users can verify their installed extension against the tagged release. The SHA comes from the `COMMIT_SHA` env var at build time (`dev` if unset).
+
+---
+
+## 6. Network blocking (declarativeNetRequest)
+
+**Decision.** The `declarativeNetRequest` permission is declared in `wxt.config.ts`, but no rulesets ship yet. It is reserved for blocking ad-server or tracking requests if AI platforms start making them; today all blocking is cosmetic (CSS on first-party DOM).
+
+---
+
+## 7. Marketing website
+
+**Decision.** Astro static site with React islands, Tailwind CSS v3, deployed to GitHub Pages at https://adblocked.ai.
+
+**Why.** A marketing site is static content; Astro ships HTML-first with minimal JS and outputs plain files that GitHub Pages can host with no extra services.
+
+**How.**
+- React only where interactivity is needed (currently the FAQ accordion, `client:load`); everything else is `.astro` components.
+- Brand palette lives in `website/tailwind.config.js`; dark mode follows the OS (`darkMode: 'media'`).
+- The product name is **adblocked.ai**; **Aegis** remains the codename (repo, internal docs).
+- No analytics or third-party tracking scripts on the site, consistent with the Tier 0 posture in §2.
+- `.github/workflows/deploy.yml` builds and deploys on pushes to `main` that touch `website/**`.
 
 ---
 
 ## References
 
-- `docs/high_level_design_prompt.md` — original architecture proposal.
-- `docs/plugin_implementation_plan.md` — v0 implementation plan.
 - `docs/projectbrief.md` — product brief.

@@ -1,13 +1,14 @@
 # Overview
-Aegis is an ad-blocker for AI products, starting with chatgpt.com
+adblocked.ai (codename: Aegis) is an ad-blocker for AI products, starting with chatgpt.com.
 
 # MVP capabilities
-Browser plug-in that detects and neutralizes advertising on https://chatgpt.com
+Browser extension that hides known advertising elements on https://chatgpt.com using selectors curated by the team.
 
 # Marketing website
-This will be built out first, describing the rationale for the product and simple (mocked up) install instructions.
+Built first, at https://adblocked.ai. It explains why the product exists and gives install instructions; Chrome Web Store distribution is not live yet.
 
-## Technical assumptions
-The marketing website will be built using Javascript and Vite.  We are open to suggestions on which frameworks to use beyond that (next.js, react, etc.)
-The look and feel of the website is critical. It should be modern, responsive and uncluttered.
+## Technical choices
+- The website is built with Astro, React islands and Tailwind CSS. The look and feel matters: it should be modern, responsive and uncluttered.
+- The extension is built with WXT and TypeScript (Manifest V3).
 
+See `docs/design_decisions.md` for the rationale.

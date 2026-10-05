@@ -4,13 +4,13 @@ Ad-blocking for cloud AI chat interfaces, starting with ChatGPT.
 
 ## Current Focus
 
-The active codebase in this repository is the marketing website in `website/`.
+The marketing website (`website/`) is live at https://adblocked.ai; active development is on the browser extension (`plugin/`).
 
 ## Repository Layout
 
 ```text
 .
-├── docs/                 Product brief, design notes, design decisions, implementation plan
+├── docs/                 Product brief, design decisions
 ├── plugin/               Browser extension (WXT + TypeScript, MV3)
 ├── website/              Astro marketing site
 └── README.md             This file
@@ -76,7 +76,7 @@ npm install
 npm run dev
 ```
 
-WXT launches a Chromium window with the extension auto-loaded. Open `chatgpt.com`; placeholder selectors from `rules/chatgpt.json` will be hidden.
+WXT launches a Chromium window with the extension auto-loaded. Open `chatgpt.com`; elements matching the selectors in `rules/chatgpt.json` will be hidden.
 
 ### 3. Type-check
 
@@ -94,10 +94,7 @@ Output is generated in `plugin/.output/chrome-mv3/`. Load it as an unpacked exte
 
 ### Architecture overview
 
-The extension is a modular rule applier — selectors are curated externally and consumed via `rules/<platform>.json`. See:
-- `docs/plugin_implementation_plan.md` — implementation plan and phase breakdown
-- `docs/design_decisions.md` — telemetry posture, detection strategy, stack rationale
-- `docs/high_level_design_prompt.md` — original architecture proposal
+The extension is a modular rule applier — selectors are curated externally and consumed via `rules/<platform>.json`. See `docs/design_decisions.md` for telemetry posture, detection strategy, and stack rationale.
 
 ### Privacy mechanical test
 
