@@ -18,6 +18,9 @@ Extension (`cd plugin`):
 - `npm install` — also runs `wxt prepare` (generates `.wxt/` types)
 - `npm run dev` — launches Chromium with the extension loaded; open chatgpt.com
 - `npm run compile` — type-check (`tsc --noEmit`)
+- `npm run lint` — ESLint
+- `npm run format` / `npm run format:check` — Prettier
+- `npm run validate:rules` — checks `rules/*.json` shape and selector syntax
 - `npm run build` — output in `plugin/.output/chrome-mv3/` (load unpacked via chrome://extensions)
 - `npm run zip` — packaged build
 - `COMMIT_SHA` env var is injected at build time as the `__COMMIT_SHA__` global (defaults to `dev`).
@@ -25,7 +28,7 @@ Extension (`cd plugin`):
 Website (`cd website`):
 - `npm run dev` (http://localhost:4321), `npm run build` (→ `website/dist/`), `npm run preview`
 
-There is no test suite and no lint script in either project.
+There is no test suite. The website has no lint script.
 
 ## Extension architecture
 
@@ -49,4 +52,4 @@ Key constraints (from `docs/design_decisions.md`):
 
 Astro static output with `@astrojs/react`, `@astrojs/tailwind` (v3), `@astrojs/sitemap`. Pages in `src/pages/` compose components from `src/components/` inside `src/layouts/Base.astro`. React is used only for interactive islands (e.g. `FAQAccordion.jsx` with `client:load`). Brand colors (`navy`, `cyan`, `coral`, etc.) are defined in `tailwind.config.js`; dark mode is `media`-based.
 
-Deployment: `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on pushes to `main` that touch `website/**`. Custom domain via `website/public/CNAME`.
+Deployment: `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on pushes to `main` that touch `website/**`. Custom domain via `website/public/CNAME`. CI: `.github/workflows/plugin-ci.yml` runs validate:rules, lint, format:check, compile and build on PRs and pushes to `main` touching `plugin/**`; `.github/workflows/website-ci.yml` builds the site on PRs touching `website/**`.

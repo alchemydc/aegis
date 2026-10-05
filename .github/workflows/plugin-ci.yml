@@ -1,0 +1,58 @@
+name: Plugin CI
+
+on:
+  pull_request:
+    paths:
+      - plugin/**
+      - .github/workflows/plugin-ci.yml
+  push:
+    branches:
+      - main
+    paths:
+      - plugin/**
+      - .github/workflows/plugin-ci.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plugin-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugin
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: plugin/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate rules
+        run: npm run validate:rules
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Type-check
+        run: npm run compile
+
+      - name: Build
+        run: npm run build
+        env:
+          COMMIT_SHA: ${{ github.sha }}
