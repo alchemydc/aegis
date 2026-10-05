@@ -60,7 +60,7 @@ GitHub Pages deploys are automated via GitHub Actions using `.github/workflows/d
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 22+ (required by WXT 0.21)
 - npm 10+
 
 ### 1. Install dependencies
@@ -76,7 +76,9 @@ npm install
 npm run dev
 ```
 
-WXT launches a Chromium window with the extension auto-loaded. Open `chatgpt.com`; elements matching the selectors in `rules/chatgpt.json` will be hidden.
+WXT watches the source and rebuilds into `plugin/.output/chrome-mv3-dev/`. It does not launch a browser. Load that directory once as an unpacked extension in Chrome (`chrome://extensions` → Developer mode → Load unpacked); the extension reloads itself after each rebuild. Open `chatgpt.com`, and elements matching the selectors in `rules/chatgpt.json` will be hidden.
+
+Auto-launching a browser would require WXT's optional `web-ext` peer dependency. It is intentionally not installed because it pulls in vulnerable dependencies.
 
 ### 3. Type-check
 
