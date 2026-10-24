@@ -91,12 +91,12 @@ The single function `reportBlocked(platform, hostname, selectorId)` in `lib/coun
 
 ## 4. Cross-browser scope (v0)
 
-**Decision.** v0 ships Chrome only. Brave is Chromium and gets it free.
+**Decision.** v0 ships Chrome only. Brave and Edge are Chromium and run the same build (Edge needs only its own store listing when store submission happens).
 
 **Roadmap.**
-- v1.1: Firefox (separate AMO listing, event-page differences from MV3 SW).
+- v1.1: Firefox. Built as MV3 (`wxt -b firefox --mv3`; WXT converts the service worker to a background script). Distributed like Chrome, as a sideloadable file on GitHub Releases: an XPI signed by AMO on the **unlisted** channel, since Firefox release builds refuse unsigned extensions. Gecko ID `extension@adblocked.ai`; `data_collection_permissions: none` (requires Firefox 140 desktop / 142 Android). Chosen ahead of Safari for its larger desktop share and low porting cost.
 - v1.2: Safari macOS (requires Xcode wrapper, Apple Developer account, App Store review).
-- **Not on roadmap:** iOS Safari (no practical extension surface for this style of blocker).
+- **Not on roadmap:** iOS Safari. Safari Web Extensions on iOS can inject CSS, so the blocker would technically work, but mobile ChatGPT usage is overwhelmingly the native app, which no extension reaches.
 
 ---
 
