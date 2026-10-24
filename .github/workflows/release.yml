@@ -51,8 +51,33 @@ jobs:
         env:
           COMMIT_SHA: ${{ github.sha }}
 
-      - name: Attach zip to release
+      - name: Attach Chrome zip to release
         run: gh release upload "$TAG" .output/*-chrome.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release-please.outputs.tag_name }}
+
+      - name: Build Firefox zip
+        run: npm run zip:firefox
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+
+      # Unlisted channel: AMO signs the XPI without publishing it on addons.mozilla.org.
+      # web-ext is invoked via npx (not a dependency) because it pulls in vulnerable deps.
+      - name: Sign Firefox build
+        run: >-
+          npx --yes web-ext@10.7.0 sign
+          --channel unlisted
+          --source-dir .output/firefox-mv3
+          --upload-source-code .output/*-sources.zip
+          --artifacts-dir .output/signed
+          --approval-timeout 900000
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+
+      - name: Attach Firefox XPI to release
+        run: gh release upload "$TAG" .output/signed/*.xpi
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.release-please.outputs.tag_name }}

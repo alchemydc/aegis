@@ -23,6 +23,7 @@ Extension (`cd plugin`):
 - `npm run validate:rules` — checks `rules/*.json` shape and selector syntax
 - `npm run build` — output in `plugin/.output/chrome-mv3/` (load unpacked via chrome://extensions)
 - `npm run zip` — packaged build
+- Firefox: `npm run dev:firefox` / `build:firefox` / `zip:firefox` (output in `plugin/.output/firefox-mv3/`; load via about:debugging → This Firefox → Load Temporary Add-on → `manifest.json`). Release builds are signed on AMO's unlisted channel in `release.yml` via a pinned `npx web-ext` (still not a dependency).
 - `COMMIT_SHA` env var is injected at build time as the `__COMMIT_SHA__` global (defaults to `dev`).
 
 Website (`cd website`):
@@ -33,7 +34,7 @@ There is no test suite. The website has no lint script.
 ## Releases
 
 Only the extension is versioned (semver); the website is unversioned and deploys continuously.
-- release-please (`.github/workflows/release.yml`, `release-please-config.json`) derives the next version from conventional commits touching `plugin/` (`fix:` → patch, `feat:` → minor; breaking → minor while < 1.0) and keeps a release PR open. Merging it tags `vX.Y.Z`, creates the GitHub Release, and attaches the built zip.
+- release-please (`.github/workflows/release.yml`, `release-please-config.json`) derives the next version from conventional commits touching `plugin/` (`fix:` → patch, `feat:` → minor; breaking → minor while < 1.0) and keeps a release PR open. Merging it tags `vX.Y.Z`, creates the GitHub Release, and attaches the built Chrome zip and signed Firefox XPI.
 - Never edit versions by hand. `plugin/package.json` is the single source of truth; do not set `version` in `wxt.config.ts` (WXT reads it from `package.json`).
 - No pre-release suffixes (`-beta.1`): Chrome manifest versions must be dot-separated integers.
 
@@ -59,4 +60,4 @@ Key constraints (from `docs/design_decisions.md`):
 
 Astro static output with `@astrojs/react`, `@astrojs/tailwind` (v3), `@astrojs/sitemap`. Pages in `src/pages/` compose components from `src/components/` inside `src/layouts/Base.astro`. React is used only for interactive islands (e.g. `FAQAccordion.jsx` with `client:load`). Brand colors (`navy`, `cyan`, `coral`, etc.) are defined in `tailwind.config.js`; dark mode is `media`-based.
 
-Deployment: `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on pushes to `main` that touch `website/**`. Custom domain via `website/public/CNAME`. CI: `.github/workflows/plugin-ci.yml` runs validate:rules, lint, format:check, compile and build on PRs and pushes to `main` touching `plugin/**`; `.github/workflows/website-ci.yml` builds the site on PRs touching `website/**`.
+Deployment: `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on pushes to `main` that touch `website/**`. Custom domain via `website/public/CNAME`. CI: `.github/workflows/plugin-ci.yml` runs validate:rules, lint, format:check, compile and the Chrome and Firefox builds on PRs and pushes to `main` touching `plugin/**`; `.github/workflows/website-ci.yml` builds the site on PRs touching `website/**`.

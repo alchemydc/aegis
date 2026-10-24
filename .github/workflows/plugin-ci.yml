@@ -56,3 +56,8 @@ jobs:
         run: npm run build
         env:
           COMMIT_SHA: ${{ github.sha }}
+
+      - name: Build (Firefox)
+        run: npm run build:firefox
+        env:
+          COMMIT_SHA: ${{ github.sha }}
