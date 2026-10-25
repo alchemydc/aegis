@@ -77,8 +77,13 @@ jobs:
           WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
           WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
 
+      # AMO names the signed file after a hash; rename it to match the Chrome zip.
       - name: Attach Firefox XPI to release
-        run: gh release upload "$TAG" .output/signed/*.xpi
+        run: |
+          zip=$(ls .output/*-firefox.zip)
+          xpi="$(basename "${zip%.zip}").xpi"
+          mv .output/signed/*.xpi ".output/signed/$xpi"
+          gh release upload "$TAG" ".output/signed/$xpi"
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.release-please.outputs.tag_name }}
